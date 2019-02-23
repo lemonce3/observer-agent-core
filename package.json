@@ -39,5 +39,9 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.0",
     "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "@lemonce3/pmc": "git+https://github.com/lemonce3/pmc.git",
+    "axios": "^0.18.0"
   }
 }

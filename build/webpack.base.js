@@ -6,7 +6,9 @@ global.config = require(path.resolve(process.cwd(), 'config.json'));
 module.exports = {
 	entry: {
 		bundle: [
-            'js-polyfills/polyfill.min',
+			'js-polyfills/es5',
+			'js-polyfills/es6',
+			'core-js/modules/es7.array.includes',
 			'js-polyfills/web.min',
 			path.resolve('index.js'),
 		]
@@ -17,13 +19,22 @@ module.exports = {
 	},
 	target: 'web',
 	module: {
-		rules: [{
-			test: /\.js$/,
-			exclude: /node_modules/,
-			use: [
-				'babel-loader'
-			]
-		}]
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: [
+					'babel-loader'
+				]
+			},
+			{
+				test: /\.js$/,
+				include: /axios/,
+				use: [
+					'babel-loader'
+				]
+			}
+		]
 	},
 	node: false
 };

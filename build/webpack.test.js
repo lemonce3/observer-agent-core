@@ -25,7 +25,10 @@ module.exports = merge(webpackBase, {
 		port: config.dev.port,
 		host: config.dev.host,
 		hot: false,
-		inline: false
+		inline: false,
+		proxy: {
+			'/api': config.dev.proxy
+		}
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -35,6 +38,6 @@ module.exports = merge(webpackBase, {
 		})
 	],
 	node: {
-		Buffer: true,
+		Buffer: true
 	}
 });
