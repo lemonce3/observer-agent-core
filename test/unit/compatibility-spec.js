@@ -1,6 +1,6 @@
 const axios = require('axios');
 const assert = require('assert');
-const pmc = require('@lemonce3/pmc/src/index');
+const pmc = require('@lemonce3/pmc/src');
 
 const PREFIX = '/api/test';
 
@@ -161,6 +161,20 @@ describe('compatibility test' , function () {
 		});
 	});
 
+	describe('"class" test', function () {
+		it('create a retrive', function () {
+			class Test {
+				constructor (name) {
+					this.name = name;
+				}
+			}
+
+			assert.deepEqual(new Test('test'), {
+				name: 'test'
+			});
+		});
+	});
+
 	describe('pmc test', function () {
 		const channelRegistry = pmc.channelRegistry;
 
@@ -171,7 +185,7 @@ describe('compatibility test' , function () {
 				};
 			};
 
-			on('test', test);
+			pmc.on('test', test);
 
 			assert.deepEqual(channelRegistry, {
 				test
@@ -179,7 +193,7 @@ describe('compatibility test' , function () {
 		});
 
 		it('method "request" test', function (done) {
-			request(window, 'test').then(function (data) {
+			pmc.request(window, 'test').then(function (data) {
 				assert.deepEqual(data, {
 					result: 'success'
 				});
@@ -189,7 +203,7 @@ describe('compatibility test' , function () {
 		});
 
 		it('method "off" test', function () {
-			off('test');
+			pmc.off('test');
 
 			assert.deepEqual(channelRegistry, {});
 		});

@@ -29,7 +29,7 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
-				include: /axios/,
+				include: /axios|pmc/,
 				use: [
 					'babel-loader'
 				]
